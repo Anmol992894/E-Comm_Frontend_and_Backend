@@ -218,13 +218,17 @@ function Login() {
         setLoading(true);
         const requestData = await { email:user.email, password:user.nickname };
         try {
-            const result = await axios.post(`${API_BASE_URL}/login`, requestData);
-            if (result.status === 200) {
-                localStorage.setItem("token", result.data.result.token);
+            localStorage.setItem("token", result.data.result.token);
                 localStorage.setItem('user', JSON.stringify(result.data.result.user));
                 dispatch({ type: 'LOGIN_SUCCESS', payload: result.data.result.user });
                 navigate('/HomePage');
-            }
+            // const result = await axios.post(`${API_BASE_URL}/login`, requestData);
+            // if (result.status === 200) {
+            //     localStorage.setItem("token", result.data.result.token);
+            //     localStorage.setItem('user', JSON.stringify(result.data.result.user));
+            //     dispatch({ type: 'LOGIN_SUCCESS', payload: result.data.result.user });
+            //     navigate('/HomePage');
+            // }
         } catch (error) {
             console.error(error);
             Swal.fire({

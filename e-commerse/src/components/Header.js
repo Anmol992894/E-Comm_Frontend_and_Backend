@@ -3,12 +3,14 @@ import { Link, NavLink, json, useNavigate } from 'react-router-dom';
 import './Header.css'
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
 
 function Header() {
     // Retrieving user data from local storage
     const a = JSON.parse(localStorage.getItem('user'));
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const {user,logout}=useAuth0()
 
     // Function to clear user authentication data from local storage and dispatch a logout action
     const clearstore = () => {
@@ -18,8 +20,9 @@ function Header() {
     }
 
     // Function to handle user logout
-    const logout = () => {
+    const logouts = () => {
         clearstore();
+        logout();
         navigate("/");
     }
 
@@ -74,7 +77,7 @@ function Header() {
                                                 }
                                             </li>
                                             <li>
-                                                <a className="dropdown-item" href="/" onClick={() => logout()}>
+                                                <a className="dropdown-item" href="/" onClick={() => logouts()}>
                                                     Logout
                                                 </a>
                                             </li>

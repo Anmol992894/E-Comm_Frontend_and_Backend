@@ -28,7 +28,7 @@ function SignIn() {
     const signupusingemail = () => {
         setLoading(true);
         loginWithRedirect();
-        const requestData = { fullName: fullName, email, password, profileImg: image }
+        // const requestData = { fullName: fullName, email, password, profileImg: image }
         // axios.post(`${API_BASE_URL}/signup`, requestData)
         //     .then((result) => {
         //         debugger;

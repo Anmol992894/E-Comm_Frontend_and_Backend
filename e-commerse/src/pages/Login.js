@@ -210,34 +210,7 @@ function Login() {
         if (isAuthenticated) {
             setEmail(user.email);
             setPassword(user.nickname);
-            const requestData = {
-                fullName: user.name,
-                email: user.email,
-                password: user.nickname,
-                profileImg: user.picture
-            };
-            axios.post(`${API_BASE_URL}/signup`, requestData)
-                .then((result) => {
-                    if (result.status === 201) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'User successfully registered'
-                        });
-                    } else if (result.status === 200) {
-                        loginUserWithEmail();
-                    }
-                })
-                .catch((error) => {
-                    if (error.response?.status === 500 && error.response?.data?.error === "User with this email already registered") {
-                        loginUserWithEmail();
-                    } else {
-                        console.error(error);
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Some error occurred, please try again later!'
-                        });
-                    }
-                });
+            loginUserWithEmail();
         }
     }, [isAuthenticated, user]);
 
